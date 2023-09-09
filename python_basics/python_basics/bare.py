@@ -1,11 +1,10 @@
 import rclpy
-from rclpy.node import Node
 
 def main(args=None):
 
     rclpy.init(args=args)
 
-    node = Node("bare_node")
+    node = rclpy.create_node("bare_node")
 
     rclpy.spin(node)
 
