@@ -1,6 +1,6 @@
 import rclpy
 
-def main(args=None):
+def main(args=None) -> None:
 
     rclpy.init(args=args)
 
