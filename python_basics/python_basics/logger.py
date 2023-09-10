@@ -1,11 +1,10 @@
 import rclpy
-from rclpy.node import Node
 
 def main(args=None):
 
     rclpy.init(args=args)
 
-    node = Node("logger")
+    node = rclpy.create_node("logger_node")
 
     rate = node.create_rate(0.5)
     counter = 0
