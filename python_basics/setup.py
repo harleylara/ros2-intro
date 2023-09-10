@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             "bare = python_basics.bare:main",
-            "logger = python_basics.logger:main"
+            "logger = python_basics.logger:main",
+            "my_node = python_basics.class:main"
         ],
     },
 )
