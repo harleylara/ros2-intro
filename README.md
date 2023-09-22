@@ -10,7 +10,7 @@ cd ros2-intro
 Get external repos:
 
 ```
-sudo ap install python3-vcstools
+sudo ap install python3-vcstool
 vcs import < .repos
 ```
 
