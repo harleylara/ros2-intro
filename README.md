@@ -2,8 +2,9 @@
 
 ## Installation
 
+In the `src` folder of your workspace:
 ```
-git clone https://github.com/sea-bass/turtlebot3_behavior_demos.git
+git clone https://github.com/harleylara/ros2-intro.git
 cd ros2-intro
 ```
 
