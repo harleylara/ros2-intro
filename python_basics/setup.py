@@ -20,9 +20,11 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "bare = python_basics.bare:main",
-            "logger = python_basics.logger:main",
-            "my_node = python_basics.class:main"
+            f"bare = {package_name}.bare:main",
+            f"logger = {package_name}.logger:main",
+            f"my_node = {package_name}.class:main",
+            f"publisher = {package_name}.publisher:main",
+            f"subscriber = {package_name}.subscriber:main"
         ],
     },
 )
