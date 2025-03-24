@@ -24,7 +24,8 @@ setup(
             f"logger = {package_name}.logger:main",
             f"my_node = {package_name}.class:main",
             f"publisher = {package_name}.publisher:main",
-            f"subscriber = {package_name}.subscriber:main"
+            f"subscriber = {package_name}.subscriber:main",
+            f"server = {package_name}.services.server:main",
         ],
     },
 )
