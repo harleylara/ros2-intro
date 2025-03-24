@@ -26,6 +26,7 @@ setup(
             f"publisher = {package_name}.publisher:main",
             f"subscriber = {package_name}.subscriber:main",
             f"server = {package_name}.services.server:main",
+            f"client = {package_name}.services.client:main",
         ],
     },
 )

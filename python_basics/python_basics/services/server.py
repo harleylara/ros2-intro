@@ -14,6 +14,7 @@ class ServiceNode(Node):
 
 
     def compute_distance(self, request, response):
+        self.get_logger().info(f"Got a request: {request}")
         # simple calculation euclidean distance
         dx = request.goal.x - request.origin.x
         dy = request.goal.y - request.origin.y

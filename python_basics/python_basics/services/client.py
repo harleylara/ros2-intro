@@ -18,13 +18,13 @@ class ClientAsync(Node):
 
     def send_request(self) -> Future:
         # some testing values
-        self.__request.origin.x = 0
-        self.__request.origin.y = 0
-        self.__request.origin.z = 0
+        self.__request.origin.x = 0.0
+        self.__request.origin.y = 0.0
+        self.__request.origin.z = 0.0
 
-        self.__request.goal.x = 2
-        self.__request.goal.y = 2
-        self.__request.goal.z = 0
+        self.__request.goal.x = 2.0
+        self.__request.goal.y = 2.0
+        self.__request.goal.z = 0.0
 
         return self.client.call_async(self.__request)
 
@@ -42,7 +42,7 @@ def main(args=None):
 
         response = future.result()
 
-        node.get_logger().info(f"Euclidean distance: {response.distance}")
+        node.get_logger().info(f"Euclidean distance: {response.distance:.4f} m")
     except KeyboardInterrupt:
         pass
     except ExternalShutdownException:
