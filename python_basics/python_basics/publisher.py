@@ -1,4 +1,6 @@
+import sys
 import rclpy
+from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from demo_interfaces.msg import Counter
 
@@ -26,11 +28,15 @@ def main(args=None) -> None:
 
     minimal_publisher = MinimalPublisher()
 
-    rclpy.spin(minimal_publisher)
-
-    minimal_publisher.destroy_node()
-
-    rclpy.shutdown()
+    try:
+        rclpy.spin(minimal_publisher)
+    except KeyboardInterrupt:
+        pass
+    except ExternalShutdownException:
+        sys.exit()
+    finally:
+        minimal_publisher.destroy_node()
+        rclpy.try_shutdown()
 
 if __name__ == "__main__":
     main()

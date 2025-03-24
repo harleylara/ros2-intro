@@ -1,4 +1,6 @@
+import sys
 import rclpy
+from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from demo_interfaces.msg import Counter
 
@@ -19,11 +21,15 @@ def main(args=None) -> None:
 
     minimal_subscriber = MinimalSubscriber()
 
-    rclpy.spin(minimal_subscriber)
-
-    minimal_subscriber.destroy_node()
-
-    rclpy.shutdown()
+    try:
+        rclpy.spin(minimal_subscriber)
+    except KeyboardInterrupt:
+        pass
+    except ExternalShutdownException:
+        sys.exit(1)
+    finally:
+        minimal_subscriber.destroy_node()
+        rclpy.try_shutdown()
 
 if __name__ == "__main__":
     main()
