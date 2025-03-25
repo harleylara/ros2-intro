@@ -27,6 +27,7 @@ setup(
             f"subscriber = {package_name}.subscriber:main",
             f"server = {package_name}.services.server:main",
             f"client = {package_name}.services.client:main",
+            f"parameters = {package_name}.parameters:main",
         ],
     },
 )
