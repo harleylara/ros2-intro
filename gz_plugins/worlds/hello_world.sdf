@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="default">
+    <!--
+      filename: shared library name (Gazebo resolves lib<filename>.so)
+      name: class name registered with GZ_ADD_PLUGIN or 
+      with a alias name defined by GZ_ADD_PLUGIN_ALIAS
+    -->
+    <plugin filename="HelloWorldSystem" name="hello_world::HelloWorldSystem"/>
+  </world>
+</sdf>

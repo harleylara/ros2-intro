@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>gz_plugins</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="harley.lara@outlook.com">harley</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+
+    <!--
+      ros_gz_sim reads these <gazebo_ros> export tags and appends the paths to:
+        - GZ_SIM_SYSTEM_PLUGIN_PATH (plugin_path)
+        - GZ_SIM_RESOURCE_PATH (gazebo_model_path / gazebo_media_path)
+
+      ${prefix} expands to: <install_prefix>/share/<package>
+    -->
+    <gazebo_ros plugin_path="${prefix}/../../lib"/>
+    <gazebo_ros gazebo_model_path="${prefix}/worlds"/>
+  </export>
+</package>
