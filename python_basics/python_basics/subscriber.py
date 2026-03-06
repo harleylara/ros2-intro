@@ -9,7 +9,8 @@ class MinimalSubscriber(Node):
     def __init__(self):
         super().__init__("subscriber_node")
 
-        self.__sub = self.create_subscription(Counter, "/count", self.callback, 10)
+        self.__sub = self.create_subscription(Counter, "/counter", self.callback, 10)
+
 
     def callback(self, msg) -> None:
         self.get_logger().info(f"Got count: {msg.count}")

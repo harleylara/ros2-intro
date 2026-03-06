@@ -11,7 +11,7 @@ class MinimalPublisher(Node):
 
         self.__count = 0
 
-        self.__pub = self.create_publisher(Counter, "/count", 10)
+        self.__pub = self.create_publisher(Counter, "/counter", 10)
 
         timer = self.create_timer(0.5, self.callback)
 
