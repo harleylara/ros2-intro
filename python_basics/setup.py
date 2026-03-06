@@ -28,6 +28,8 @@ setup(
             f"server = {package_name}.services.server:main",
             f"client = {package_name}.services.client:main",
             f"parameters = {package_name}.parameters:main",
+            f"qos_publisher = {package_name}.qos.publisher:main",
+            f"qos_subscriber = {package_name}.qos.subscriber:main",
         ],
     },
 )
