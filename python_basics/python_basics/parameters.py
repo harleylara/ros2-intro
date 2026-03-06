@@ -9,13 +9,13 @@ from demo_interfaces.msg import Counter
 
 def parse_executable_args(argv):
     parser = argparse.ArgumentParser(description="Simple ROS 2 Parametrized node")
-    parser.add_argument("--show-params", default=False, help="Show a initial messages with values for the parameters", action='store_true')
+    parser.add_argument("--verbose", default=False, help="Show extra debugging information.", action='store_true')
     return parser.parse_args(remove_ros_args(argv)[1:])
 
 class ParameterNode(Node):
 
-    def __init__(self, show_params: bool):
-        super().__init__("parameter_node")
+    def __init__(self, verbose: bool = False):
+        super().__init__("counter")
 
         self.declare_parameter("topic", "/counter")
         self.declare_parameter("initial_value", 0)
@@ -25,7 +25,7 @@ class ParameterNode(Node):
         param_period_sec = 1/(float(self.get_parameter("hz").value))
         param_initial_value = float(self.get_parameter("initial_value").value)
 
-        if show_params:
+        if verbose:
             self.get_logger().info(f"topic: {param_topic}")
             self.get_logger().info(f"initial_value: {param_initial_value}")
             self.get_logger().info(f"hz: {float(self.get_parameter('hz').value)}")
@@ -52,14 +52,12 @@ def main(argv=None):
 
     rclpy.init(args=argv)
 
-    node = ParameterNode(exec_args.show_params)
+    node = ParameterNode(exec_args.verbose)
 
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
-    except ExternalShutdownException:
-        sys.exit(1)
     finally:
         rclpy.try_shutdown()
 
