@@ -10,7 +10,12 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/minimal.launch.py', 'launch/exploration.launch.py']),
+        ('share/' + package_name + '/launch', [
+            'launch/bare.launch.py',
+            'launch/minimal.launch.py',
+            'launch/internals.launch.py',
+            'launch/context.launch.py',
+        ]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
