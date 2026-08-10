@@ -7,14 +7,23 @@ from rclpy.node import Node
 from rclpy.utilities import remove_ros_args
 from demo_interfaces.msg import Counter
 
-def parse_executable_args(argv):
-    parser = argparse.ArgumentParser(description="Simple ROS 2 Parametrized node")
-    parser.add_argument("--verbose", default=False, help="Show extra debugging information.", action='store_true')
-    return parser.parse_args(remove_ros_args(argv)[1:])
-
 class ParameterNode(Node):
 
-    def __init__(self, verbose: bool = False):
+    __VERSION = "1.0.0"
+
+    @staticmethod
+    def parse_executable_args(argv):
+        parser = argparse.ArgumentParser(
+            description="Simple ROS 2 parameterized node"
+        )
+        parser.add_argument(
+            "--version",
+            action="store_true",
+            help="Show the current version of this node.",
+        )
+        return parser.parse_args(remove_ros_args(argv)[1:])
+
+    def __init__(self, show_version: bool = False):
         super().__init__("counter")
 
         self.declare_parameter("topic", "/counter")
@@ -25,10 +34,8 @@ class ParameterNode(Node):
         param_period_sec = 1/(float(self.get_parameter("hz").value))
         param_initial_value = float(self.get_parameter("initial_value").value)
 
-        if verbose:
-            self.get_logger().info(f"topic: {param_topic}")
-            self.get_logger().info(f"initial_value: {param_initial_value}")
-            self.get_logger().info(f"hz: {float(self.get_parameter('hz').value)}")
+        if show_version:
+            self.get_logger().info(f"current version: {self.__VERSION}")
 
         # Note: Our Counter.msg is expecting a int64 value
         self.__count = int(param_initial_value)
@@ -48,11 +55,10 @@ def main(argv=None):
 
     argv = sys.argv if argv is None else argv
 
-    exec_args = parse_executable_args(argv)
-
     rclpy.init(args=argv)
 
-    node = ParameterNode(exec_args.verbose)
+    exec_args = ParameterNode.parse_executable_args(argv)
+    node = ParameterNode(show_version=exec_args.version)
 
     try:
         rclpy.spin(node)
